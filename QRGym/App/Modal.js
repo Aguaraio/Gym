@@ -54,7 +54,6 @@ class ModalFB extends Component{
         animationType='slide'
         transparent={this.state.transparent}
         visible={this.state.modalVisible}
-
         >
         <View style={[styles.container, modalBackgroundStyle]}>
           <Image source={require('./../img/gym-wallpaper.jpg')} style={{width:windowWidth, height:windowHeight}}>

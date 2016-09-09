@@ -24,7 +24,6 @@ class UserProfile extends Component{
     this.state={
       dataSource: '',
       loading: true,
-      images: [],
       userPicture:'',
       userName:'',
       userGender:'',

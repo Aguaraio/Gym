@@ -4,13 +4,18 @@ import {Image, View, Text, Dimensions,TouchableHighlight,StyleSheet,Modal} from 
 let windowWidth = Dimensions.get('window').width
 let windowHeight = Dimensions.get('window').height
 var ReturnedStr = '';
+var strGif = '';
 class Switcher extends Component{
   constructor(props){
     super(props);
     this.state={modalVisible:false,
-                transparent: true};
+                transparent: true,
+                ReturnedStr: '',
+                strGif: '',
+              };
+    this.renderSwitcher = this._renderSwitcher.bind(this);
   }
-  
+
   propTypes:{
     source: React.propTypes.string
   }
@@ -20,34 +25,54 @@ class Switcher extends Component{
   }
 
   _renderSwitcher(){
+
+    //console.log('//////////////////////////');
+    //console.log('ENTRA EN RENDERSWITCHER  ' + this.props.source);
+    //console.log('//////////////////////////');
+    //this.setState({ReturnedStr: ''});
+    //this.setState({strGif:''});
+    //this.setState({strGif:this.props.source});
+    //strGif = this.props.source;
     switch (this.props.source) {
       case 'cable-bicep-exercises':
-            ReturnedStr = require('./../img/cable-bicep-exercises.gif');
+            this.setState({ReturnedStr : require('./../img/cable-bicep-exercises.gif')});
+            //ReturnedStr = require('./../img/cable-bicep-exercises.gif');
         break;
       case 'curvy-bench-press':
-          ReturnedStr = require('./../img/curvy-bench-press.gif');
+            this.setState({ReturnedStr : require('./../img/curvy-bench-press.gif')});
+            //ReturnedStr = require('./../img/curvy-bench-press.gif');
         break;
       case 'curvy-leg-curls':
-          ReturnedStr = require('./../img/curvy-leg-curls.gif');
+          this.setState({ReturnedStr : require('./../img/curvy-leg-curls.gif')});
+          //ReturnedStr = require('./../img/curvy-leg-curls.gif');
         break;
       case 'curvy-women-back-exercises':
-          ReturnedStr = require('./../img/curvy-women-back-exercises.gif');
+          this.setState({ReturnedStr : require('./../img/curvy-women-back-exercises.gif')});
+          //ReturnedStr = require('./../img/curvy-women-back-exercises.gif');
         break;
       case 'curvy-women-leg-exercises':
-          ReturnedStr = require('./../img/curvy-women-leg-exercises.gif');
+          this.setState({ReturnedStr : require('./../img/curvy-women-leg-exercises.gif')});
+          //ReturnedStr = require('./../img/curvy-women-leg-exercises.gif');
         break;
         case 'decline-bench-press':
-          ReturnedStr = require('./../img/decline-bench-press.gif');
+          this.setState({ReturnedStr : require('./../img/decline-bench-press.gif')});
+          //ReturnedStr = require('./../img/decline-bench-press.gif');
           break;
           case 'dumbbell-exercises':
-              ReturnedStr = require('./../img/dumbbell-exercises.gif');
+              this.setState({ReturnedStr : require('./../img/dumbbell-exercises.gif')});
+              //ReturnedStr = require('./../img/dumbbell-exercises.gif');
             break;
             case 'giphy':
-                ReturnedStr = require('./../img/giphy.gif');
+                this.setState({ReturnedStr : require('./../img/giphy.gif')});
+                //ReturnedStr = require('./../img/giphy.gif');
               break;
       default:
           ReturnedStr = '';
     }
+  }
+
+  componentWillMount(){
+    this.renderSwitcher();
   }
 
   render(){
@@ -60,10 +85,10 @@ class Switcher extends Component{
     var activeButtonStyle = {
       backgroundColor: '#ddd'
     };
-    this._renderSwitcher();
+
     return(
       <View>
-            <Image source={ReturnedStr} style={{width: windowWidth-8, height: windowWidth-8}}>
+            <Image source={this.state.ReturnedStr} style={{width: windowWidth-8, height: windowWidth-8}}>
                 <View style={styles.iButton}>
                     <TouchableHighlight onPress={() => {this._setModalVisible(!this.state.modalVisible)}} >
                         <Image source={require('./../img/iButton.png')} style={{width: 30, height: 30}}/>
@@ -79,7 +104,7 @@ class Switcher extends Component{
                 >
                 <View style={[styles.container, modalBackgroundStyle]}>
                   <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
-                    <Text>PUTO EL QUE LEE</Text>
+                    <Text>Onservaciones varias</Text>
                     <Button
                       onPress={this._setModalVisible.bind(this, false)}
                       style={styles.modalButton}>
@@ -90,6 +115,10 @@ class Switcher extends Component{
               </Modal>
       </View>
     );
+  }
+
+  componentWillReceiveProps(){
+    this.renderSwitcher();
   }
 }
 
