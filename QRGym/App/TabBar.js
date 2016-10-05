@@ -9,14 +9,6 @@ import Modal from './Modal';
 import UserInfo from './UserInfo';
 let windowHeight = Dimensions.get('window').height;
 let windowWidth = Dimensions.get('window').width;
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-  GraphRequest,
-  GraphRequestManager,
-  AccessToken,
-  LoginManager
-} = FBSDK;
 var showModal = false;
 let result;
 class TabBar extends Component{
@@ -34,8 +26,6 @@ class TabBar extends Component{
   propTypes:{
     userPicture: React.propTypes.string,
   }
-
-
 
   _selectProfile(){
     result = realm.objects('FBUser').filtered('id=1');

@@ -24,10 +24,10 @@ class UserProfile extends Component{
     this.state={
       dataSource: '',
       loading: true,
-      userPicture:'',
-      userName:'',
-      userGender:'',
-      userBirthday:'',
+      userPicture: '',
+      userName: '',
+      userGender: '',
+      userBirthday: '',
       userID: '',
       userLocation: '',
     }
